@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'header',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input() pageTitle: string;
+  @Input() iconTitle: string;
+  counter = 0;
+  userStatusColor = "warn";
 
-  ngOnInit() {
+  constructor(private _backendservice: BackendService) { }
+
+  ngOnInit( ) {
+    this._backendservice.getCardTotal().subscribe(
+      (res) => {
+        this.counter= res;
+      }
+    );
+    this._backendservice.getUserStatus().subscribe(
+      (res) => {
+        this.userStatusColor = res ? "primary" : "warn";
+      }
+    );
   }
 
 }
