@@ -9,8 +9,17 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CustommaterialModule } from './custommaterial.module';
-import { SetproductComponent } from './setproduct/setproduct.component';
+import { SetproductComponent } from './admin/setproduct/setproduct.component';
 import { CommonModule } from '@angular/common';
+import { AdmintabComponent } from './admin/admintab/admintab.component';
+import { AdminordersComponent } from './admin/adminorders/adminorders.component';
+import { AdmincartsComponent } from './admin/admincarts/admincarts.component';
+import { AdminusersComponent } from './admin/adminusers/adminusers.component';
+import { OrdersComponent } from './user/orders/orders.component';
+import { CartsComponent } from './user/carts/carts.component';
+import { UserComponent } from './user/user/user.component';
+import { ProductComponent } from './user/product/product.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +28,16 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     SettingsComponent,
-    SetproductComponent
+    SetproductComponent,
+    AdmintabComponent,
+    AdminordersComponent,
+    AdmincartsComponent,
+    AdminusersComponent,
+    OrdersComponent,
+    CartsComponent,
+    UserComponent,
+    ProductComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

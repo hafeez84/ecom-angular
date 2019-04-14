@@ -119,7 +119,27 @@ export class BackendService {
 
 
 
+  updateShoppingInterest(callType, data){
+    let fake = true;
+    return Observable.create(
+      observable => {
+        setTimeout(() => {
+          observable.next(fake)
+        }, 2000);
+      }
+    )
+  }
 
+  updateShoppingCart(callType, data){
+    let fake = true;
+    return Observable.create(
+      observable => {
+        setTimeout(() => {
+          observable.next(fake)
+        }, 2000);
+      }
+    )
+  }
 
 
   
