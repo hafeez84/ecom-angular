@@ -19,18 +19,18 @@
     <span class="example-icon"></span>
     {{pageTitle}}
     <span class="example-spacer"></span>
-    <mat-icon [color]="userStatusColor">account_box</mat-icon>
+    <mat-icon [color]="userStatusColor" routerLink="/product">shop</mat-icon>
     <span class="example-icon"></span>
+    <mat-icon [color]="userStatusColor" routerLink="/settings">account_box</mat-icon>
     <mat-icon matBadge="{{counter}}" matBadgePosition="before" matBadgeColor="accent">shopping_cart</mat-icon>
     <span class="example-icon"></span>
-    <mat-icon>settings</mat-icon>
   
     <mat-menu #navMenu="matMenu">
       <!-- <a href="{{configData.fblink}}" target="_blank"><button mat-menu-item><mat-icon svgIcon="fb"></mat-icon></button></a>
       <a href="{{configData.linkedin}}" target="_blank"><button mat-menu-item><mat-icon svgIcon="linkedin"></mat-icon></button></a>
       <a href="{{configData.github}}" target="_blank"><button mat-menu-item><mat-icon svgIcon="git"></mat-icon></button></a> -->
       <button mat-menu-item routerLink="/aboutus"><mat-icon>info</mat-icon></button>
-      <button mat-menu-item routerLink="/setproduct"><mat-icon>settings</mat-icon></button>
+      <button mat-menu-item routerLink="/admin"><mat-icon>settings</mat-icon></button>
     </mat-menu>
   
   </mat-toolbar>

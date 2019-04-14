@@ -1,15 +1,18 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { BackendService } from './../services/backend.service'
+import { BackendService } from './../../services/backend.service'
 
 @Component({
-  selector: 'setproduct',
-  templateUrl: './setproduct.component.html',
-  styleUrls: ['./setproduct.component.css']
+  selector: 'carts',
+  templateUrl: './carts.component.html',
+  styleUrls: ['./carts.component.css']
 })
-export class SetproductComponent implements OnInit, OnDestroy {
+export class CartsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
+    // throw new Error("Method not implemented.");
+    if(this.querySubscription){
+      this.querySubscription.unSubscribe();
+    }
   }
 
   myDocData: any[];
@@ -29,7 +32,7 @@ export class SetproductComponent implements OnInit, OnDestroy {
   constructor(private _backendService: BackendService) { }
 
   ngOnInit() {
-    this.toggleField = "searchMode";
+    this.toggleField = "resMode";
     this.dataSource = new MatTableDataSource(this.members)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -37,15 +40,16 @@ export class SetproductComponent implements OnInit, OnDestroy {
   }
 
   toggle(filter?){
-    if(!filter) { filter = "searchMode"}
+    if(!filter) { filter = "resMode"}
     else {filter = filter;}
     this.toggleField =filter;
   }
 
   getData() {
     this.dataLoading = true;
-    this.querySubscription = this._backendService.getProducts('product')
+    this.querySubscription = this._backendService.getProducts('cart')
         .subscribe(res => {
+            res
             this.members = res;
             this.dataSource = new MatTableDataSource(res);
             this.dataSource.paginator = this.paginator;
@@ -66,18 +70,19 @@ export class SetproductComponent implements OnInit, OnDestroy {
 
   getFilterData(filters){
     this.dataLoading = true;
-    this.querySubscription = this._backendService.getFilterProducts('product',filters)
+    this.querySubscription = this._backendService.getFilterProducts('cart',filters)
         .subscribe(members => {
             this.members = members;
             this.dataSource = new MatTableDataSource(members);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
+            this.dataLoading = false;
         });
 }
 
 setData(formData){
   this.dataLoading = true;
-  this.querySubscription = this._backendService.setProducts('product',formData)
+  this.querySubscription = this._backendService.setProducts('cart',formData)
       .subscribe(members => {
         this.savedChanges = true;
         this.dataLoading = true;
@@ -119,12 +124,5 @@ deleteDoc(docId){
 
 
 
-
-
-
-  ngOndestroy(){
-    if(this.querySubscription){
-      this.querySubscription.unSubscribe();
-    }
-  }
 }
+
